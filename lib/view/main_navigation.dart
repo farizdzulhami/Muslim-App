@@ -47,7 +47,7 @@ class _MainNavigationState extends State<MainNavigation> {
                 _selectedIndex = index;
               });
             },
-            selectedItemColor: const Color(0xFF0F9D8A),
+            selectedItemColor: const Color(0xFF1565C0),
             unselectedItemColor: Colors.grey,
             showSelectedLabels: true,
             showUnselectedLabels: true,

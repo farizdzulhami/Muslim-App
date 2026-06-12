@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
                 gradient: LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
-                  colors: [Color(0xFF0F9D8A), Color(0xFF0C7C6D)],
+                  colors: [Color(0xFF1565C0), Color(0xFF0D47A1)],
                 ),
                 borderRadius: BorderRadius.vertical(bottom: Radius.circular(40)),
               ),
@@ -77,7 +77,7 @@ class _HomePageState extends State<HomePage> {
                             Text(vm.currentPrayer.toUpperCase(), 
                               style: const TextStyle(color: Colors.white70, letterSpacing: 2, fontSize: 12)),
                             const SizedBox(height: 4),
-                            Text(vm.countdown, 
+                            Text(vm.currentPrayerTime, 
                               style: const TextStyle(color: Colors.white, fontSize: 32, fontWeight: FontWeight.bold)),
                           ],
                         ),
@@ -104,7 +104,7 @@ class _HomePageState extends State<HomePage> {
                   title: "Al-Quran",
                   subtitle: "30 Juz & Terjemahan",
                   icon: Icons.menu_book_rounded,
-                  color: const Color(0xFF0F9D8A),
+                  color: const Color(0xFF1565C0),
                   onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const QuranPage())),
                 ),
                 _featureCard(

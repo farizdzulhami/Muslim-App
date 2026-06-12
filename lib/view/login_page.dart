@@ -11,7 +11,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  bool isLogin = true;
   final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
@@ -27,13 +29,13 @@ class _LoginPageState extends State<LoginPage> {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Color(0xFF0F9D8A), Color(0xFF086B5E)],
+            colors: [Color(0xFF1565C0), Color(0xFF0D47A1)],
           ),
         ),
         child: SafeArea(
           child: Column(
             children: [
-              const SizedBox(height: 50),
+              const SizedBox(height: 30),
               // Logo atau Ikon
               Container(
                 padding: const EdgeInsets.all(20),
@@ -43,15 +45,15 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 child: const Icon(
                   Icons.mosque_rounded,
-                  size: 80,
+                  size: 60,
                   color: Colors.white,
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 15),
               const Text(
                 'Muslim App',
                 style: TextStyle(
-                  fontSize: 28,
+                  fontSize: 24,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),
@@ -59,15 +61,15 @@ class _LoginPageState extends State<LoginPage> {
               const Text(
                 'Assalamu\'alaikum',
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 14,
                   color: Colors.white70,
                 ),
               ),
-              const SizedBox(height: 50),
+              const SizedBox(height: 30),
               Expanded(
                 child: Container(
                   width: double.infinity,
-                  padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 40),
+                  padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
                   decoration: BoxDecoration(
                     color: Theme.of(context).scaffoldBackgroundColor,
                     borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
@@ -79,17 +81,19 @@ class _LoginPageState extends State<LoginPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Selamat Datang',
+                            isLogin ? 'Selamat Datang' : 'Daftar Akun Baru',
                             style: TextStyle(
                               fontSize: 22,
                               fontWeight: FontWeight.bold,
                               color: Theme.of(context).primaryColor,
                             ),
                           ),
-                          const SizedBox(height: 10),
-                          const Text(
-                            'Silakan masukkan nama dan kata sandi Anda untuk melanjutkan.',
-                            style: TextStyle(color: Colors.grey),
+                          const SizedBox(height: 8),
+                          Text(
+                            isLogin
+                                ? 'Silakan masukkan nama dan kata sandi Anda untuk melanjutkan.'
+                                : 'Silakan lengkapi data berikut untuk mendaftar.',
+                            style: const TextStyle(color: Colors.grey),
                           ),
                           const SizedBox(height: 30),
                           TextFormField(
@@ -108,7 +112,29 @@ class _LoginPageState extends State<LoginPage> {
                               return null;
                             },
                           ),
-                          const SizedBox(height: 20),
+                          if (!isLogin) const SizedBox(height: 15),
+                          if (!isLogin)
+                            TextFormField(
+                              controller: _emailController,
+                              keyboardType: TextInputType.emailAddress,
+                              decoration: InputDecoration(
+                                labelText: 'Email',
+                                prefixIcon: const Icon(Icons.email_outlined),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                              ),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Email tidak boleh kosong';
+                                }
+                                if (!value.contains('@')) {
+                                  return 'Format email tidak valid';
+                                }
+                                return null;
+                              },
+                            ),
+                          const SizedBox(height: 15),
                           TextFormField(
                             controller: _passwordController,
                             obscureText: true,
@@ -126,37 +152,87 @@ class _LoginPageState extends State<LoginPage> {
                               return null;
                             },
                           ),
-                          const SizedBox(height: 40),
+                          const SizedBox(height: 30),
                           SizedBox(
                             width: double.infinity,
                             height: 55,
                             child: ElevatedButton(
                               onPressed: () {
                                 if (_formKey.currentState!.validate()) {
-                                  // Simpan data ke ViewModel
-                                  profileVM.setUserName(_nameController.text);
-                                  profileVM.setPassword(_passwordController.text);
-                                  
-                                  Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => const MainNavigation(),
-                                    ),
-                                  );
+                                  if (isLogin) {
+                                    bool success = profileVM.login(
+                                      _nameController.text,
+                                      _passwordController.text,
+                                    );
+                                    
+                                    if (success) {
+                                      Navigator.pushReplacement(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => const MainNavigation(),
+                                        ),
+                                      );
+                                    } else {
+                                      ScaffoldMessenger.of(context).showSnackBar(
+                                        const SnackBar(
+                                          content: Text('Nama atau Kata Sandi salah, atau akun belum terdaftar.'),
+                                          backgroundColor: Colors.red,
+                                        ),
+                                      );
+                                    }
+                                  } else {
+                                    profileVM.register(
+                                      _nameController.text,
+                                      _emailController.text,
+                                      _passwordController.text,
+                                    );
+                                    
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        content: Text('Registrasi Berhasil! Silakan masuk dengan akun Anda.'),
+                                        backgroundColor: Colors.green,
+                                      ),
+                                    );
+                                    
+                                    setState(() {
+                                      isLogin = true;
+                                      _passwordController.clear();
+                                    });
+                                  }
                                 }
                               },
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color(0xFF0F9D8A),
+                                backgroundColor: const Color(0xFF1565C0),
                                 foregroundColor: Colors.white,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(15),
                                 ),
                                 elevation: 5,
                               ),
-                              child: const Text(
-                                'Masuk',
-                                style: TextStyle(
+                              child: Text(
+                                isLogin ? 'Masuk' : 'Daftar',
+                                style: const TextStyle(
                                   fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 15),
+                          Center(
+                            child: TextButton(
+                              onPressed: () {
+                                setState(() {
+                                  isLogin = !isLogin;
+                                  _formKey.currentState?.reset();
+                                });
+                              },
+                              child: Text(
+                                isLogin
+                                    ? 'Belum punya akun? Daftar di sini'
+                                    : 'Sudah punya akun? Masuk di sini',
+                                style: const TextStyle(
+                                  color: Color(0xFF1565C0),
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),

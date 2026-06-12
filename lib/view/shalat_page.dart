@@ -72,8 +72,8 @@ class _ShalatPageState extends State<ShalatPage> {
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                       colors: [
-                        Color(0xFF0F9D8A),
-                        Color(0xFF0C7C6D),
+                        Color(0xFF1565C0),
+                        Color(0xFF0D47A1),
                       ],
                     ),
                     borderRadius: BorderRadius.vertical(
@@ -212,7 +212,7 @@ class _ShalatPageState extends State<ShalatPage> {
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
       decoration: BoxDecoration(
         color: highlight 
-            ? const Color(0xFF0F9D8A) 
+            ? const Color(0xFF1565C0) 
             : (isDark ? const Color(0xFF1E1E1E) : Colors.white),
         borderRadius: BorderRadius.circular(24),
         boxShadow: [
@@ -234,7 +234,7 @@ class _ShalatPageState extends State<ShalatPage> {
               borderRadius: BorderRadius.circular(14),
             ),
             child: Icon(icon,
-                color: highlight ? Colors.white : const Color(0xFF0F9D8A)),
+                color: highlight ? Colors.white : const Color(0xFF1565C0)),
           ),
           const SizedBox(width: 16),
           Expanded(
@@ -251,7 +251,7 @@ class _ShalatPageState extends State<ShalatPage> {
             time,
             style: TextStyle(
               fontSize: 18,
-              color: highlight ? Colors.white : const Color(0xFF0F9D8A),
+              color: highlight ? Colors.white : const Color(0xFF1565C0),
               fontWeight: FontWeight.bold,
             ),
           ),

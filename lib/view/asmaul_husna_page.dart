@@ -42,7 +42,7 @@ class _AsmaulHusnaPageState extends State<AsmaulHusnaPage> {
             padding: const EdgeInsets.only(top: 50, bottom: 20, left: 20, right: 20),
             decoration: const BoxDecoration(
               gradient: LinearGradient(
-                colors: [Color(0xFF0F9D8A), Color(0xFF0C7C6D)],
+                colors: [Color(0xFF1565C0), Color(0xFF0D47A1)],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
@@ -114,7 +114,7 @@ class _AsmaulHusnaPageState extends State<AsmaulHusnaPage> {
                             const SizedBox(height: 10),
                             ElevatedButton(
                               onPressed: () => context.read<ExtraViewModel>().fetchAsmaul(),
-                              style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFF0F9D8A)),
+                              style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFF1565C0)),
                               child: const Text("Muat Ulang", style: TextStyle(color: Colors.white)),
                             )
                           ],
@@ -146,13 +146,13 @@ class _AsmaulHusnaPageState extends State<AsmaulHusnaPage> {
                                   height: 40,
                                   alignment: Alignment.center,
                                   decoration: BoxDecoration(
-                                    color: const Color(0xFF0F9D8A).withOpacity(0.1),
+                                    color: const Color(0xFF1565C0).withOpacity(0.1),
                                     shape: BoxShape.circle,
                                   ),
                                   child: Text(
                                     item.index,
                                     style: const TextStyle(
-                                      color: Color(0xFF0F9D8A),
+                                      color: Color(0xFF1565C0),
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -167,7 +167,7 @@ class _AsmaulHusnaPageState extends State<AsmaulHusnaPage> {
                                         style: const TextStyle(
                                           fontSize: 22,
                                           fontWeight: FontWeight.bold,
-                                          color: Color(0xFF0F9D8A),
+                                          color: Color(0xFF1565C0),
                                         ),
                                       ),
                                       Text(

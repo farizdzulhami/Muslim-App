@@ -35,7 +35,7 @@ class _QuranDetailPageState extends State<QuranDetailPage> {
           style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
         centerTitle: true,
-        backgroundColor: const Color(0xFF0F9D8A),
+        backgroundColor: const Color(0xFF1565C0),
         iconTheme: const IconThemeData(color: Colors.white),
         elevation: 0,
         actions: [
@@ -55,7 +55,7 @@ class _QuranDetailPageState extends State<QuranDetailPage> {
             padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
             width: double.infinity,
             decoration: const BoxDecoration(
-              color: Color(0xFF0F9D8A),
+              color: Color(0xFF1565C0),
               borderRadius: BorderRadius.vertical(bottom: Radius.circular(30)),
             ),
             child: Column(
@@ -97,7 +97,7 @@ class _QuranDetailPageState extends State<QuranDetailPage> {
                         ),
                         child: Icon(
                           isPlaying ? Icons.pause : Icons.play_arrow,
-                          color: const Color(0xFF0F9D8A),
+                          color: const Color(0xFF1565C0),
                         ),
                       ),
                     ),
@@ -136,13 +136,13 @@ class _QuranDetailPageState extends State<QuranDetailPage> {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 12, vertical: 4),
                               decoration: BoxDecoration(
-                                color: const Color(0xFF0F9D8A).withOpacity(0.1),
+                                color: const Color(0xFF1565C0).withOpacity(0.1),
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: Text(
                                 ayat.nomorAyat.toString(),
                                 style: const TextStyle(
-                                  color: Color(0xFF0F9D8A),
+                                  color: Color(0xFF1565C0),
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -167,7 +167,7 @@ class _QuranDetailPageState extends State<QuranDetailPage> {
                           ayat.teksLatin,
                           style: const TextStyle(
                             fontSize: 14,
-                            color: Color(0xFF0F9D8A),
+                            color: Color(0xFF1565C0),
                             fontStyle: FontStyle.italic,
                           ),
                         ),

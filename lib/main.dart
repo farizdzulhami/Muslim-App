@@ -59,12 +59,12 @@ class MyApp extends StatelessWidget {
             themeMode: profileViewModel.themeMode,
             theme: ThemeData(
               useMaterial3: true,
-              colorSchemeSeed: const Color(0xFF0F9D8A),
+              colorSchemeSeed: const Color(0xFF1565C0),
               brightness: Brightness.light,
             ),
             darkTheme: ThemeData(
               useMaterial3: true,
-              colorSchemeSeed: const Color(0xFF0F9D8A),
+              colorSchemeSeed: const Color(0xFF1565C0),
               brightness: Brightness.dark,
             ),
             home: const LoginPage(),

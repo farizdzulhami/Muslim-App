@@ -16,6 +16,7 @@ class ShalatViewModel extends ChangeNotifier {
   List<ShalatDaySchedule> _schedules = [];
 
   String currentPrayer = "Memuat...";
+  String currentPrayerTime = "-";
   String countdown = "-";
 
   bool get isLoading => _isLoading;
@@ -96,6 +97,7 @@ class ShalatViewModel extends ChangeNotifier {
 
       if (now.isBefore(target)) {
         currentPrayer = entry.key;
+        currentPrayerTime = entry.value;
         countdown = _countdown(target);
         found = true;
         break;
@@ -104,6 +106,14 @@ class ShalatViewModel extends ChangeNotifier {
 
     if (!found) {
       currentPrayer = "Subuh Besok";
+      final tomorrow = now.add(const Duration(days: 1));
+      final tomorrowStr = "${tomorrow.day.toString().padLeft(2, '0')}/${tomorrow.month.toString().padLeft(2, '0')}/${tomorrow.year}";
+      try {
+        final tomorrowSchedule = _schedules.firstWhere((s) => s.tanggal.contains(tomorrowStr));
+        currentPrayerTime = tomorrowSchedule.subuh;
+      } catch (e) {
+        currentPrayerTime = times["Subuh"] ?? "-";
+      }
       countdown = "Besok";
     }
     

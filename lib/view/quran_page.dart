@@ -33,7 +33,7 @@ class _QuranPageState extends State<QuranPage> {
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
         centerTitle: true,
-        backgroundColor: const Color(0xFF0F9D8A),
+        backgroundColor: const Color(0xFF1565C0),
         iconTheme: const IconThemeData(color: Colors.white),
         elevation: 0,
       ),
@@ -43,7 +43,7 @@ class _QuranPageState extends State<QuranPage> {
           Container(
             height: 10,
             decoration: const BoxDecoration(
-              color: Color(0xFF0F9D8A),
+              color: Color(0xFF1565C0),
               borderRadius: BorderRadius.vertical(bottom: Radius.circular(30)),
             ),
           ),
@@ -107,13 +107,13 @@ class _QuranPageState extends State<QuranPage> {
                               children: [
                                 Icon(Icons.star_border_outlined,
                                     size: 45,
-                                    color: const Color(0xFF0F9D8A)
+                                    color: const Color(0xFF1565C0)
                                         .withOpacity(0.2)),
                                 Text(
                                   surah.nomor.toString(),
                                   style: const TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    color: Color(0xFF0F9D8A),
+                                    color: Color(0xFF1565C0),
                                   ),
                                 ),
                               ],
@@ -149,7 +149,7 @@ class _QuranPageState extends State<QuranPage> {
                                   onPressed: () => vm.playAudio(surah),
                                   icon: Icon(
                                     isPlaying ? Icons.pause_circle_filled : Icons.play_circle_fill,
-                                    color: const Color(0xFF0F9D8A),
+                                    color: const Color(0xFF1565C0),
                                     size: 32,
                                   ),
                                 ),
@@ -159,7 +159,7 @@ class _QuranPageState extends State<QuranPage> {
                                   style: const TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,
-                                    color: Color(0xFF0F9D8A),
+                                    color: Color(0xFF1565C0),
                                   ),
                                 ),
                               ],

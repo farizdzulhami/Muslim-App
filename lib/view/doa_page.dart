@@ -41,7 +41,7 @@ class _DoaPageState extends State<DoaPage> {
             padding: const EdgeInsets.only(top: 50, bottom: 20, left: 20, right: 20),
             decoration: const BoxDecoration(
               gradient: LinearGradient(
-                colors: [Color(0xFF0F9D8A), Color(0xFF0C7C6D)],
+                colors: [Color(0xFF1565C0), Color(0xFF0D47A1)],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
@@ -113,7 +113,6 @@ class _DoaPageState extends State<DoaPage> {
                         itemBuilder: (context, index) {
                           final doa = filteredList[index];
                           return Container(
-                            padding: const EdgeInsets.all(20),
                             decoration: BoxDecoration(
                               color: isDark ? const Color(0xFF1E1E1E) : Colors.white,
                               borderRadius: BorderRadius.circular(24),
@@ -125,65 +124,65 @@ class _DoaPageState extends State<DoaPage> {
                                 )
                               ],
                             ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                                Row(
-                                  children: [
-                                    Container(
-                                      padding: const EdgeInsets.all(8),
-                                      decoration: BoxDecoration(
-                                        color: const Color(0xFF0F9D8A).withOpacity(0.1),
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      child: const Icon(Icons.menu_book,
-                                          color: Color(0xFF0F9D8A), size: 20),
-                                    ),
-                                    const SizedBox(width: 12),
-                                    Expanded(
-                                      child: Text(
-                                        doa.doa,
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 16,
-                                          color: isDark ? Colors.white : const Color(0xFF2D2D2D),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
+                            child: Theme(
+                              data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+                              child: ExpansionTile(
+                                tilePadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                                childrenPadding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+                                leading: Container(
+                                  padding: const EdgeInsets.all(8),
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xFF1565C0).withOpacity(0.1),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: const Icon(Icons.menu_book, color: Color(0xFF1565C0), size: 20),
                                 ),
-                                const SizedBox(height: 20),
-                                Text(
-                                  doa.ayat,
-                                  textAlign: TextAlign.right,
+                                title: Text(
+                                  doa.doa,
                                   style: TextStyle(
-                                    fontSize: 24,
                                     fontWeight: FontWeight.bold,
-                                    height: 1.8,
+                                    fontSize: 16,
                                     color: isDark ? Colors.white : const Color(0xFF2D2D2D),
                                   ),
                                 ),
-                                const SizedBox(height: 16),
-                                Text(
-                                  doa.latin,
-                                  style: const TextStyle(
-                                    fontStyle: FontStyle.italic,
-                                    color: Color(0xFF0F9D8A),
-                                    fontSize: 13,
+                                children: [
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                                    children: [
+                                      Text(
+                                        doa.ayat,
+                                        textAlign: TextAlign.right,
+                                        style: TextStyle(
+                                          fontSize: 24,
+                                          fontWeight: FontWeight.bold,
+                                          height: 1.8,
+                                          color: isDark ? Colors.white : const Color(0xFF2D2D2D),
+                                        ),
+                                      ),
+                                      const SizedBox(height: 16),
+                                      Text(
+                                        doa.latin,
+                                        style: const TextStyle(
+                                          fontStyle: FontStyle.italic,
+                                          color: Color(0xFF1565C0),
+                                          fontSize: 13,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 12),
+                                      Divider(color: isDark ? Colors.white10 : Colors.grey[200]),
+                                      const SizedBox(height: 8),
+                                      Text(
+                                        doa.artinya,
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          color: isDark ? Colors.white70 : Colors.black.withOpacity(0.7),
+                                          height: 1.5,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ),
-                                const SizedBox(height: 12),
-                                Divider(color: isDark ? Colors.white10 : Colors.grey[200]),
-                                const SizedBox(height: 8),
-                                Text(
-                                  doa.artinya,
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: isDark ? Colors.white70 : Colors.black.withOpacity(0.7),
-                                    height: 1.5,
-                                  ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           );
                         },

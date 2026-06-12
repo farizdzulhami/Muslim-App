@@ -13,7 +13,7 @@ class KiblatPage extends StatelessWidget {
         title: const Text("Arah Kiblat",
             style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
         centerTitle: true,
-        backgroundColor: const Color(0xFF0F9D8A),
+        backgroundColor: const Color(0xFF1565C0),
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: Center(
@@ -32,7 +32,7 @@ class KiblatPage extends StatelessWidget {
                   height: 280,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    border: Border.all(color: const Color(0xFF0F9D8A), width: 8),
+                    border: Border.all(color: const Color(0xFF1565C0), width: 8),
                     color: isDark ? const Color(0xFF1E1E1E) : Colors.white,
                   ),
                 ),
@@ -63,14 +63,14 @@ class KiblatPage extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
               decoration: BoxDecoration(
-                color: const Color(0xFF0F9D8A).withOpacity(0.1),
+                color: const Color(0xFF1565C0).withOpacity(0.1),
                 borderRadius: BorderRadius.circular(16),
               ),
               child: const Text(
                 "Arah Kiblat: 295.14°",
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: Color(0xFF0F9D8A),
+                    color: Color(0xFF1565C0),
                     fontSize: 18),
               ),
             ),

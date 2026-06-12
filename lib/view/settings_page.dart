@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:image_picker/image_picker.dart';
 import '../viewmodel/profile_view_model.dart';
 import 'login_page.dart';
 
@@ -19,7 +20,7 @@ class SettingsPage extends StatelessWidget {
           'Pengaturan Profil',
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
-        backgroundColor: const Color(0xFF0F9D8A),
+        backgroundColor: const Color(0xFF1565C0),
         elevation: 0,
         centerTitle: true,
       ),
@@ -31,7 +32,7 @@ class SettingsPage extends StatelessWidget {
               width: double.infinity,
               padding: const EdgeInsets.all(20),
               decoration: const BoxDecoration(
-                color: Color(0xFF0F9D8A),
+                color: Color(0xFF1565C0),
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(30),
                   bottomRight: Radius.circular(30),
@@ -41,28 +42,40 @@ class SettingsPage extends StatelessWidget {
                 children: [
                   Stack(
                     children: [
-                      const CircleAvatar(
+                      CircleAvatar(
                         radius: 50,
                         backgroundColor: Colors.white,
-                        child: Icon(
-                          Icons.person,
-                          size: 60,
-                          color: Color(0xFF0F9D8A),
-                        ),
+                        backgroundImage: profileVM.profileImageBytes != null
+                            ? MemoryImage(profileVM.profileImageBytes!)
+                            : null,
+                        child: profileVM.profileImageBytes == null
+                            ? const Icon(
+                                Icons.person,
+                                size: 60,
+                                color: Color(0xFF1565C0),
+                              )
+                            : null,
                       ),
                       Positioned(
                         bottom: 0,
                         right: 0,
                         child: GestureDetector(
-                          onTap: () => _showEditProfileDialog(context, profileVM),
+                          onTap: () async {
+                            final picker = ImagePicker();
+                            final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+                            if (pickedFile != null) {
+                              final bytes = await pickedFile.readAsBytes();
+                              profileVM.setProfileImage(bytes);
+                            }
+                          },
                           child: Container(
-                            padding: const EdgeInsets.all(4),
+                            padding: const EdgeInsets.all(6),
                             decoration: const BoxDecoration(
                               color: Colors.orange,
                               shape: BoxShape.circle,
                             ),
                             child: const Icon(
-                              Icons.edit,
+                              Icons.camera_alt,
                               color: Colors.white,
                               size: 20,
                             ),
@@ -136,7 +149,7 @@ class SettingsPage extends StatelessWidget {
                     trailing: Switch(
                       value: profileVM.isNotificationEnabled,
                       onChanged: (val) => profileVM.toggleNotification(val),
-                      activeColor: const Color(0xFF0F9D8A),
+                      activeColor: const Color(0xFF1565C0),
                     ),
                     onTap: () => profileVM.toggleNotification(!profileVM.isNotificationEnabled),
                   ),
@@ -154,7 +167,7 @@ class SettingsPage extends StatelessWidget {
                     trailing: Switch(
                       value: profileVM.isDarkMode,
                       onChanged: (val) => profileVM.toggleDarkMode(val),
-                      activeColor: const Color(0xFF0F9D8A),
+                      activeColor: const Color(0xFF1565C0),
                     ),
                     onTap: () => profileVM.toggleDarkMode(!profileVM.isDarkMode),
                   ),
@@ -218,7 +231,7 @@ class SettingsPage extends StatelessWidget {
       ),
       child: ListTile(
         onTap: onTap,
-        leading: Icon(icon, color: iconColor ?? const Color(0xFF0F9D8A)),
+        leading: Icon(icon, color: iconColor ?? const Color(0xFF1565C0)),
         title: Text(
           title,
           style: TextStyle(
@@ -260,7 +273,7 @@ class SettingsPage extends StatelessWidget {
                 );
               }
             },
-            style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFF0F9D8A)),
+            style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFF1565C0)),
             child: const Text('Simpan', style: TextStyle(color: Colors.white)),
           ),
         ],
@@ -316,7 +329,7 @@ class SettingsPage extends StatelessWidget {
                 );
               }
             },
-            style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFF0F9D8A)),
+            style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFF1565C0)),
             child: const Text('Ubah', style: TextStyle(color: Colors.white)),
           ),
         ],
@@ -355,7 +368,7 @@ class SettingsPage extends StatelessWidget {
       context: context,
       applicationName: 'Muslim App',
       applicationVersion: '1.0.0',
-      applicationIcon: const Icon(Icons.mosque_rounded, color: Color(0xFF0F9D8A), size: 40),
+      applicationIcon: const Icon(Icons.mosque_rounded, color: Color(0xFF1565C0), size: 40),
       children: [
         const Text('Aplikasi jadwal shalat dan Al-Quran terpercaya.'),
       ],
